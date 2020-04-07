@@ -174,10 +174,10 @@ pascal_sbd_dataset = dataset_base.copy({
 
 pigs_dataset = dataset_base.copy({
   'name': 'ODD - Pigs',
-  'train_info': './pigs/train/via_region_data.json',
-  'train_images': './pigs/train/',
-  'valid_info': './pig/val/via_region_data.json',
-  'valid_images': './pig/val/',
+  'train_info': './data/pigs/train/via_region_data.json',
+  'train_images': './data/pigs/train/',
+  'valid_info': './data/pig/val/via_region_data.json',
+  'valid_images': './data/pig/val/',
   'class_names': ('pig'),
   'label_map': { 1:  1 }
 })

@@ -504,9 +504,9 @@ coco_base_config = Config({
     # Mirror the image with a probability of 1/2
     'augment_random_mirror': True,
     # Flip the image vertically with a probability of 1/2
-    'augment_random_flip': False,
+    'augment_random_flip': True,
     # With uniform probability, rotate the image [0,90,180,270] degrees
-    'augment_random_rot90': False,
+    'augment_random_rot90': True,
 
     # Discard detections with width and height smaller than this (in absolute width and height)
     'discard_box_width': 4 / 550,
@@ -778,7 +778,7 @@ yolact_resnet50_pascal_config = yolact_resnet50_config.copy({
 })
 
 yolact_resnet50_pigs_config = yolact_resnet50_config.copy({
-    'name': 'yolact_plus_resnet50_pigs',
+    'name': 'yolact_resnet50_pigs',
     # Dataset stuff
     'dataset': pigs_dataset,
     'num_classes': len(pigs_dataset.class_names) + 1,
@@ -823,6 +823,29 @@ yolact_plus_resnet50_config = yolact_plus_base_config.copy({
         'preapply_sqrt': False,
         'use_square_anchors': False,
     }),
+})
+
+
+yolact_plus_resnet50_pigs_config = yolact_plus_base_config.copy({
+    'name': 'yolact_plus_resnet50_pigs',
+    # Dataset stuff
+    'dataset': pigs_dataset,
+    'num_classes': len(pigs_dataset.class_names) + 1,
+
+    # Image Size
+    'max_size': 512,
+    
+     'backbone': resnet50_dcnv2_backbone.copy({
+        'selected_layers': list(range(1, 4)),
+        
+        'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
+        'pred_scales': [[i * 2 ** (j / 3.0) for j in range(3)] for i in [24, 48, 96, 192, 384]],
+        'use_pixel_scales': True,
+        'preapply_sqrt': False,
+        'use_square_anchors': False,
+    }),
+
+
 })
 
 

@@ -182,6 +182,15 @@ pigs_dataset = dataset_base.copy({
   'label_map': { 1:  1 }
 })
 
+cows_dataset = dataset_base.copy({
+  'name': 'ODD - Cow',
+  'train_info': '/content/gdrive/My Drive/Colab Notebooks/cow/train/via_region_data.json',
+  'train_images': '/content/gdrive/My Drive/Colab Notebooks/cow/train/',
+  'valid_info': '/content/gdrive/My Drive/Colab Notebooks/cow/val/via_region_data.json',
+  'valid_images': '/content/gdrive/My Drive/Colab Notebooks/cow/val/',
+  'class_names': ('cow'),
+  'label_map': { 1:  1 }
+})
 
 
 
@@ -846,6 +855,31 @@ yolact_plus_resnet50_pigs_config = yolact_plus_base_config.copy({
     }),
 
 
+})
+
+yolact_plus_base_cow_config = yolact_base_config.copy({
+    'name': 'yolact_plus_base_cow',
+    
+    'dataset': cows_dataset,
+    'num_classes': len(cows_dataset.class_names) + 1,
+
+    'backbone': resnet101_dcn_inter3_backbone.copy({
+        'selected_layers': list(range(1, 4)),
+        
+        'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
+        'pred_scales': [[i * 2 ** (j / 3.0) for j in range(3)] for i in [24, 48, 96, 192, 384]],
+        'use_pixel_scales': True,
+        'preapply_sqrt': False,
+        'use_square_anchors': False,
+    }),
+
+    'use_maskiou': True,
+    'maskiou_net': [(8, 3, {'stride': 2}), (16, 3, {'stride': 2}), (32, 3, {'stride': 2}), (64, 3, {'stride': 2}), (128, 3, {'stride': 2})],
+    'maskiou_alpha': 25,
+    'rescore_bbox': False,
+    'rescore_mask': True,
+
+    'discard_mask_area': 5*5,
 })
 
 

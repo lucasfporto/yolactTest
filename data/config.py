@@ -193,7 +193,15 @@ cows_dataset = dataset_base.copy({
 })
 
 
-
+nema_dataset = dataset_base.copy({
+  'name': 'Abade Nema',
+  'train_info': './data/nema/train/via_region_data.json',
+  'train_images': './data/nema/train/',
+  'valid_info': './data/nema/val/via_region_data.json',
+  'valid_images': './data/nema/val/',
+  'class_names': ('Helicotylenchus sp', 'Heterodera glycines J2', 'Meloidogyne sp J2', 'Pratylenchus brachyurus', 'Rotylenchulus reniformis', 'Ovos'),
+  'label_map': { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6 }
+})
 
 # ----------------------- TRANSFORMS ----------------------- #
 
@@ -806,6 +814,17 @@ yolact_resnet50_cow_config = yolact_resnet50_config.copy({
     'max_size': 512,
 })
 
+
+yolact_resnet50_nema_config = yolact_resnet50_config.copy({
+    'name': 'yolact_resnet50_cow',
+    # Dataset stuff
+    'dataset': nema_dataset,
+    'num_classes': len(nema_dataset.class_names) + 1,
+
+    # Image Size
+    'max_size': 512,
+})
+
 # ----------------------- YOLACT++ CONFIGS ----------------------- #
 
 yolact_plus_base_config = yolact_base_config.copy({
@@ -844,6 +863,27 @@ yolact_plus_resnet50_config = yolact_plus_base_config.copy({
     }),
 })
 
+yolact_plus_resnet50_nema_config = yolact_plus_base_config.copy({
+    'name': 'yolact_plus_resnet50_pigs',
+    # Dataset stuff
+    'dataset': nema_dataset,
+    'num_classes': len(nema_dataset.class_names) + 1,
+
+    # Image Size
+    'max_size': 512,
+    
+     'backbone': resnet50_dcnv2_backbone.copy({
+        'selected_layers': list(range(1, 4)),
+        
+        'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
+        'pred_scales': [[i * 2 ** (j / 3.0) for j in range(3)] for i in [24, 48, 96, 192, 384]],
+        'use_pixel_scales': True,
+        'preapply_sqrt': False,
+        'use_square_anchors': False,
+    }),
+
+
+})
 
 yolact_plus_resnet50_pigs_config = yolact_plus_base_config.copy({
     'name': 'yolact_plus_resnet50_pigs',

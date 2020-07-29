@@ -816,7 +816,7 @@ yolact_resnet50_cow_config = yolact_resnet50_config.copy({
 
 
 yolact_resnet50_nema_config = yolact_resnet50_config.copy({
-    'name': 'yolact_resnet50_cow',
+    'name': 'yolact_resnet50_nema',
     # Dataset stuff
     'dataset': nema_dataset,
     'num_classes': len(nema_dataset.class_names) + 1,

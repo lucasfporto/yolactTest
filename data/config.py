@@ -199,8 +199,10 @@ nema_dataset = dataset_base.copy({
   'train_images': '/content/gdrive/My Drive/nema/IMG_TRAIN/',
   'valid_info': '/content/gdrive/My Drive/nema/IMG_VAL/val.json',
   'valid_images': '/content/gdrive/My Drive/nema/IMG_VAL/',
-  'class_names': ('Helicotylenchus sp', 'Heterodera glycines J2', 'Meloidogyne sp J2', 'Pratylenchus brachyurus', 'Rotylenchulus reniformis', 'Ovos'),
-  'label_map': { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6 }
+  #'class_names': ('Helicotylenchus sp', 'Heterodera glycines J2', 'Meloidogyne sp J2', 'Pratylenchus brachyurus', 'Rotylenchulus reniformis', 'Ovos'),
+  #'label_map': { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6 }
+  'class_names': ('nema'),
+  'label_map': { 1:  1}
 })
 
 # ----------------------- TRANSFORMS ----------------------- #

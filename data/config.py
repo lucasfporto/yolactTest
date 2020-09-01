@@ -866,7 +866,7 @@ yolact_plus_resnet50_config = yolact_plus_base_config.copy({
 })
 
 yolact_plus_resnet50_nema_config = yolact_plus_base_config.copy({
-    'name': 'yolact_plus_resnet50_pigs',
+    'name': 'yolact_plus_resnet50_nema',
     # Dataset stuff
     'dataset': nema_dataset,
     'num_classes': len(nema_dataset.class_names) + 1,

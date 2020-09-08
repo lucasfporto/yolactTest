@@ -195,10 +195,10 @@ cows_dataset = dataset_base.copy({
 
 nema_dataset = dataset_base.copy({
   'name': 'Nema',
-  'train_info': '/content/gdrive/My Drive/nema/IMG_TRAIN/train.json',
-  'train_images': '/content/gdrive/My Drive/nema/IMG_TRAIN/',
-  'valid_info': '/content/gdrive/My Drive/nema/IMG_VAL/val.json',
-  'valid_images': '/content/gdrive/My Drive/nema/IMG_VAL/',
+  'train_info': '/content/gdrive/My Drive/Colab Notebooks/nema/IMG_TRAIN/train.json',
+  'train_images': '/content/gdrive/My Drive/Colab Notebooks/nema/IMG_TRAIN/',
+  'valid_info': '/content/gdrive/My Drive/Colab Notebooks/nema/IMG_VAL/val.json',
+  'valid_images': '/content/gdrive/My Drive/Colab Notebooks/nema/IMG_VAL/',
   #'class_names': ('Helicotylenchus sp', 'Heterodera glycines J2', 'Meloidogyne sp J2', 'Pratylenchus brachyurus', 'Rotylenchulus reniformis', 'Ovos'),
   #'label_map': { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6 }
   'class_names': ('nema'),

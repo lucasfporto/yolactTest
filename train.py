@@ -80,7 +80,7 @@ parser.add_argument('--no_autoscale', dest='autoscale', action='store_false',
                     help='YOLACT will automatically scale the lr and the number of iterations depending on the batch size. Set this if you want to disable that.')
 parser.add_argument('--only_last_layer', default=False, dest='only_last_layer', action='store_true',
                     help='Only train (fine-tune) the last layer.')
-parser.add_argument('--freeze_bn', default=False, dest='only_last_layer', action='store_true',
+parser.add_argument('--freeze', default=False, dest='only_last_layer', action='store_true',
                     help='Freeze initial layers.')                    
 
                     
@@ -189,7 +189,7 @@ def train():
                                     transform=BaseTransform(MEANS))
 
     # Parallel wraps the underlying module, but when saving and loading we don't want that
-    yolact_net = Yolact(only_last_layer=args.only_last_layer, freeze_bn=args.freeze_bn)
+    yolact_net = Yolact(only_last_layer=args.only_last_layer, freeze=args.freeze)
     net = yolact_net
     net.train()
 

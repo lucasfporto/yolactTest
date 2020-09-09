@@ -396,13 +396,14 @@ class Yolact(nn.Module):
         - pred_aspect_ratios: A list of lists of aspect ratios with len(selected_layers) (see PredictionModule)
     """
 
-    def __init__(self, only_last_layer=False, freeze_bn=False):
+    def __init__(self, only_last_layer=False, freeze=False):
         super().__init__()
         
         self.only_last_layer = only_last_layer
+        self.freeze = freeze
         self.backbone = construct_backbone(cfg.backbone)
 
-        if cfg.freeze_bn or freeze_bn:
+        if cfg.freeze_bn or self.freeze:
             self.freeze_bn()
 
         # Compute mask_dim here and add it back to the config. Make sure Yolact's constructor is called early!
@@ -553,7 +554,7 @@ class Yolact(nn.Module):
     def train(self, mode=True):
         super().train(mode)
 
-        if cfg.freeze_bn:
+        if cfg.freeze_bn or self.freeze:
             self.freeze_bn()
 
     def freeze_bn(self, enable=False):

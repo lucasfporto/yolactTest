@@ -627,8 +627,9 @@ class Yolact(nn.Module):
                 # A hack for the way dataparallel works
                 if cfg.share_prediction_module and pred_layer is not self.prediction_layers[0]:
                     pred_layer.parent = [self.prediction_layers[0]]
-
-                p = pred_layer(pred_x.detach())
+                
+               #p = pred_layer(pred_x.detach())
+                p = pred_layer(pred_x) 
                 
                 for k, v in p.items():
                     pred_outs[k].append(v)

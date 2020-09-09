@@ -80,7 +80,7 @@ parser.add_argument('--no_autoscale', dest='autoscale', action='store_false',
                     help='YOLACT will automatically scale the lr and the number of iterations depending on the batch size. Set this if you want to disable that.')
 parser.add_argument('--only_last_layer', default=False, dest='only_last_layer', action='store_true',
                     help='Only train (fine-tune) the last layer.')
-parser.add_argument('--freeze', default=False, dest='only_last_layer', action='store_true',
+parser.add_argument('--freeze', default=False, dest='freeze', action='store_true',
                     help='Freeze initial layers.')                    
 
                     
